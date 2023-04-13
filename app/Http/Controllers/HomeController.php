@@ -20,8 +20,11 @@ class HomeController extends Controller
     {
 
         $title = 'Home Page';
+        $posts = Post::orderBy('id', 'desc')->get();
 
-    return view('home', compact('title'));
+
+
+    return view('home', compact('title', 'posts'));
     }
     public function test(){
         return __METHOD__;

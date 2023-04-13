@@ -1,5 +1,9 @@
 @extends('layouts.layout')
 
+@section('title')@parent:: About
+
+@endsection
+
 @section('content')
 
     <section class="py-5 text-center container">

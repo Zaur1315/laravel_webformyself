@@ -3,6 +3,8 @@
 namespace App\Models;
 
 //use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 
@@ -14,11 +16,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-//    use HasFactory;
-//    protected $table = ''
-//    protected $attributes = [
-//        'content' => 'Lorem Ipsum...',
-//    ];
+    use HasFactory;
+
 
     protected $fillable = ['title', 'content'];
 
@@ -32,5 +31,10 @@ class Post extends Model
         return $this->belongsToMany(Tag::class);
     }
 
+
+    public function getPostDate()
+    {
+        return Carbon::parse($this->created_at)->diffForHumans();
+    }
 
 }
