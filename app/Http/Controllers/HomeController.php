@@ -26,9 +26,19 @@ class HomeController extends Controller
 
     return view('home', compact('title', 'posts'));
     }
-    public function test(){
-        return __METHOD__;
 
+    public function create()
+    {
+        $title = 'Create Post';
+        $rubrics = Rubric::pluck('title', 'id')->all();
+        return view('create', compact('title', 'rubrics'));
+    }
+
+    public function store(\Illuminate\Http\Request $request)
+    {
+//        dd($request);
+        Post::create($request->all());
+        return redirect()->route('home');
     }
 
 }

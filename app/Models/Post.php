@@ -32,9 +32,15 @@ class Post extends Model
     }
 
 
+//    public function getPostDate()
+//    {
+//        return Carbon::parse($this->created_at)->diffForHumans();
+//    }
     public function getPostDate()
     {
-        return Carbon::parse($this->created_at)->diffForHumans();
+        $formatter = new \IntlDateFormatter('ru_RU', \IntlDateFormatter::FULL, \IntlDateFormatter::FULL);
+        $formatter->setPattern('d MMM y');
+        return $formatter->format(new \DateTime($this->created_at));
     }
 
 }
