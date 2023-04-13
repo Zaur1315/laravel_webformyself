@@ -13,11 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', '\App\Http\Controllers\HomeController@index');
-Route::get('/test', '\App\Http\Controllers\HomeController@test');
-Route::get('/page/{slug}', '\App\Http\Controllers\PageController@show');
-Route::get('/test2', '\App\Http\Controllers\Test\TestController@index');
-
-Route::resource('admin/posts', '\App\Http\Controllers\PostController', ['parameters' => [
-    'posts' => 'slug',
-]]);
+Route::get('/', '\App\Http\Controllers\HomeController@index')->name('home');
+Route::get('/page/about', '\App\Http\Controllers\PageController@show')->name('page.about');
