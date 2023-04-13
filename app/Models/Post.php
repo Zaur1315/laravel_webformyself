@@ -22,4 +22,10 @@ class Post extends Model
 
     protected $fillable = ['title', 'content'];
 
+    public function rubric()
+    {
+        return $this->belongsTo(Rubric::class);
+    }
+
+
 }
