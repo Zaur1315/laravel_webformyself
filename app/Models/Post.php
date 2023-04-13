@@ -27,5 +27,10 @@ class Post extends Model
         return $this->belongsTo(Rubric::class);
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
 
 }
