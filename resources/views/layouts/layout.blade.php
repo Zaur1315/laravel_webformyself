@@ -10,7 +10,7 @@
             My Site
         @show</title>
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
 
 
 </head>
@@ -66,7 +66,7 @@
 
 @include('layouts.footer')
 
-<script src="js/scripts.js"></script>
+<script src="{{asset('js/scripts.js')}}"></script>
 
 </body>
 </html>
