@@ -1,30 +1,35 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\City;
-use App\Models\Country;
 use App\Models\Rubric;
-use App\Models\Tag;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Support\Facades\DB;
 use App\Models\Post;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Cookie;
 
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
 
-        $title = 'Home Page';
+//    Cache::put('key', 'Value', 60);
+
+//    dump(Cache::get('key'));
+
+        Cache::flush();
+
+    if(Cache::has('posts')){
+        $posts = Cache::get('posts');
+    }else{
         $posts = Post::orderBy('id', 'desc')->get();
+        Cache::put('posts', $posts);
+    }
 
 
+        $title = 'Home Page';
 
-    return view('home', compact('title', 'posts'));
+        return view('home', compact('title', 'posts'));
     }
 
     public function create()
@@ -43,24 +48,9 @@ class HomeController extends Controller
            'rubric_id'=>'integer',
         ]);
 
-//        $rules = [
-//           'title'=> 'required|min:5|max:100',
-//           'content'=>'required',
-//           'rubric_id'=>'integer',
-//           ];
-//
-//        $messages = [
-//            'title.required' => 'Заполните поле заголовка',
-//            'title.min' => 'Минимум 5 символов',
-//            'title.max' => 'Максимум 100 символов',
-//            'content.required' => 'Заполните поле контента',
-//            'rubric_id.integer'=> 'Выберите рубрику'
-//        ];
-//
-//        $validator = Validator::make($request->all(), $rules, $messages)->validate();
-
 
         Post::create($request->all());
+        $request->session()->flash('success', 'Данные сохраненны');
         return redirect()->route('home');
     }
 
