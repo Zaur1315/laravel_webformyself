@@ -19,7 +19,7 @@ class Post extends Model
     use HasFactory;
 
 
-    protected $fillable = ['title', 'content'];
+    protected $fillable = ['title', 'content', 'rubric_id'];
 
     public function rubric()
     {
