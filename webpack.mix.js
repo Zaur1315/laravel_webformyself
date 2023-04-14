@@ -11,4 +11,4 @@ mix.styles([
 mix.scripts(['resources/front/js/bootstrap.js',], 'public/js/scripts.js');
 
 
-mix.copyDirectory('resources/img', 'public/img');
+mix.copyDirectory('resources/front/img', 'public/img');
