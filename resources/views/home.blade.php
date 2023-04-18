@@ -41,7 +41,9 @@
                         </div>
                     </div>
                 @endforeach
-
+                <div class="col-md-12">
+                    {{$posts->appends(['test'=>request()->test])->links('vendor.pagination.bootstrap-5')}}
+                </div>
             </div>
         </div>
     </div>

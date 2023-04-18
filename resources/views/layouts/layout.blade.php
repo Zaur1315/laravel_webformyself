@@ -33,6 +33,9 @@
                             <li><a href="{{route('register.create')}}" class="text-white">Register</a></li>
                             <li><a href="{{route('login.create')}}" class="text-white">Login</a></li>
                             <li><a href="{{route('logout')}}" class="text-white">Logout</a></li>
+                            @if(auth()->user()->avatar)
+                                <img src="{{asset('storage/'.auth()->user()->avatar)}}" alt="" height="40">
+                            @endif
 
                             @php
                                 dump(Auth::check())
