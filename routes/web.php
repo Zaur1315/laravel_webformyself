@@ -23,5 +23,17 @@ Route::get('/page/about', '\App\Http\Controllers\PageController@show')->name('pa
 
 Route::match(['get','post'], '/send', '\App\Http\Controllers\ContactController@send');
 
-Route::get('register', '\App\Http\Controllers\UserController@create')->name('register.create');
-Route::post('register', '\App\Http\Controllers\UserController@store')->name('register.store');
+Route::group(['middleware' => 'guest'], function (){
+    Route::get('register', '\App\Http\Controllers\UserController@create')->name('register.create');
+    Route::post('register', '\App\Http\Controllers\UserController@store')->name('register.store');
+    Route::get('/login', '\App\Http\Controllers\UserController@loginForm')->name('login.create');
+    Route::post('/login', '\App\Http\Controllers\UserController@login')->name('login');
+});
+
+
+
+Route::group(['middleware' => 'admin', 'prefix' => 'admin'],function (){
+    Route::get('/', 'App\Http\Controllers\UserController@admin');
+});
+Route::get('/logout', '\App\Http\Controllers\UserController@logout')->name('logout')->middleware('auth');
+//Route::get('/admin', '\App\Http\Controllers\UserController@admin')->middleware('admin');

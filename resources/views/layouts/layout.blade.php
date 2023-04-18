@@ -31,6 +31,9 @@
                             <li><a href="{{route('page.about')}}" class="text-white">About</a></li>
                             <li><a href="{{route('posts.create')}}" class="text-white">Create</a></li>
                             <li><a href="{{route('register.create')}}" class="text-white">Register</a></li>
+                            <li><a href="{{route('login.create')}}" class="text-white">Login</a></li>
+                            <li><a href="{{route('logout')}}" class="text-white">Logout</a></li>
+
                             @php
                                 dump(Auth::check())
                             @endphp
